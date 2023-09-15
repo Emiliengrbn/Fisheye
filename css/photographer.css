@@ -1,11 +1,25 @@
-#contact_modal {
-    display: none;
+main {
+    margin: 0 100px;
 }
 
-.photograph-header {
-    background-color: #FAFAFA;
+#photograph-header {
     height: 300px;
-    margin: 0 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #FAFAFA;
+    padding: 0 50px;
+}
+
+.banner_photographer_img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.photographer_description_title {
+    margin-right: 0;
 }
 
 .contact_button {
@@ -21,16 +35,25 @@
     cursor: pointer;
 }
 
+/*------------- CONTACT MODAL -------------*/
+
+#contact_modal {
+    display: none;
+    justify-content: center;
+}
+
 .modal {
     border-radius: 5px;
     background-color: #DB8876;
-    width: 50%;
+    width: 40%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    padding: 35px;
+    padding: 30px;
     margin: auto;
+    position: absolute;
+    top: 10px;
 }
 
 .modal header {
@@ -43,7 +66,7 @@
 }
 
 .modal header h2 {
-    font-size: 64px;
+    font-size: 50px;
     font-weight: normal;
     text-align: center;
 }
@@ -57,7 +80,7 @@ form {
 
 form label {
     color: #312E2E;
-    font-size: 36px;
+    font-size: 30px;
 }
 
 form div {
@@ -68,9 +91,219 @@ form div {
     margin-bottom: 26px;
 }
 
-form input {
+form input,
+textarea {
     width: 100%;
-    height: 68px;
+    height: 50px;
     border: none;
     border-radius: 5px;
+    font-size: 23px;
+}
+
+form textarea {
+    height: 100px;
+}
+
+
+.confirmation_content {
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.text_confirmation_content {
+    color: #000;
+    font-size: 40px;
+    text-align: center;
+}
+
+.btn-close {
+    background: #901C1C;
+    display: block;
+    margin: 0 auto;
+    border-radius: 7px;
+    font-size: 2rem;
+    padding: 12px 82px;
+    color: #fff;
+    cursor: pointer;
+    border: 0;
+    margin-top: 50px;
+}
+
+.confirmation_content .close {
+    position: initial;
+    width: initial;
+    height: initial;
+}
+
+.confirmation_content .close:before,
+.confirmation_content .close:after {
+    display: none;
+}
+
+/* ---------- PICTURE SECTION ----------*/
+
+#picture_section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.picture_container {
+    width: 350px;
+    height: 350px;
+    margin: 20px 0;
+}
+
+.picture_container_img {
+    width: 100%;
+    height: 90%;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.picture_container_description {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 5px;
+    color: #901C1C;
+    font-weight: 600;
+}
+
+.picture_container_description_title {
+    font-size: 25px;
+}
+
+.picture_container_description_like {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 55px;
+}
+
+.picture_container_description_like_number {
+    font-size: 20px;
+}
+
+.picture_container_description_like i {
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.picture_container_description_like div {
+    display: flex;
+}
+
+/*------------ SORT PHOTOS ------------*/
+
+#sort_picture {
+    display: flex;
+}
+
+/*------------ COUNTER LIKES ------------*/
+
+.container_counter_likes {
+    position: fixed;
+    bottom: 0px;
+    right: 100px;
+    display: flex;
+    background: #DB8876;
+    padding: 15px 35px;
+    border-radius: 10px 10px 0 0;
+    font-weight: bold;
+    cursor: auto;
+}
+
+.likes_counter {
+    padding-right: 50px;
+}
+
+/*------------- LIGHTBOX MODAL -------------*/
+
+.lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(219, 219, 219, 0.7);
+    z-index: 10;
+    overflow: auto;
+    animation: lightboxIn .5s;
+}
+
+.lightbox_next,
+.lightbox_preview {
+    border: none;
+    /* background: url(../assets/icons/arrow.svg) center center / 100% 100%;
+    height: 16px;
+    width: 28px; */
+    background: url(../assets/icons/arrow.svg) center center / 16px 28px no-repeat;
+    height: 100%;
+    width: 15%;
+    position: fixed;
+    /* top: 50%; */
+    top: 0;
+    right: 0;
+    margin-top: -14px;
+    z-index: 11;
+    /* margin-right: 50px;
+    margin-left: 50px; */
+}
+
+.lightbox_preview {
+    right: auto;
+    left: 0;
+    transform: rotate(180deg);
+}
+
+.lightbox_close {
+    border: none;
+    background: none;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 12;
+}
+
+.lightbox_close i {
+    font-size: 30px;
+}
+
+.lightbox button {
+    opacity: .2;
+    cursor: pointer;
+    transition: opacity .3s;
+}
+
+.lightbox button:hover {
+    opacity: 1;
+}
+
+.lightbox_container img {
+    max-width: 100%;
+    height: auto;
+    animation: lightboxIn .5s;
+}
+
+.lightbox_container {
+    margin: 0 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+@keyframes lighboxIn {
+    form {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
