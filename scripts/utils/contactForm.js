@@ -1,6 +1,11 @@
 function displayModal() {
   const modal = document.getElementById("contact_modal");
+  const formulaire = document.getElementById("form");
+  const champs = formulaire.querySelectorAll("input, textarea, button");
   modal.style.display = "flex";
+  if (champs.length > 0) {
+    champs[0].focus();
+  }
 }
 function closeModal() {
   const modal = document.getElementById("contact_modal");
@@ -38,7 +43,6 @@ const fieldsValidation = {
 };
 
 function validateField(field, message, condition) {
-  console.log(field);
   const fieldId = field.id;
   const errorContainer = field.parentElement.querySelector(".errorMsg");
   if (condition()) {
@@ -88,8 +92,34 @@ form.addEventListener("submit", (e) => {
     headerTitle.style.display = "none";
 
     confirmation[0].style.display = "flex";
-    modal[0].style.height = "90%";
   } else {
     alert("Veuillez remplir le formulaire");
   }
+});
+
+function closeKey(event) {
+  if (event.key === "Escape") {
+    const modal = document.getElementById("contact_modal");
+    modal.style.display = "none";
+  }
+}
+
+document.addEventListener("keydown", closeKey);
+
+document.addEventListener("DOMContentLoaded", function () {
+  const formulaire = document.getElementById("form");
+  const champs = formulaire.querySelectorAll("input, textarea, button");
+  formulaire.addEventListener("keydown", function (e) {
+    if (e.key === "Tab") {
+      const focusableElements = Array.from(champs).filter(function (element) {
+        return !element.disabled && !element.readOnly;
+      });
+      const currentIndex = focusableElements.indexOf(document.activeElement);
+      if (currentIndex !== -1) {
+        e.preventDefault();
+        const nextIndex = (currentIndex + 1) % focusableElements.length;
+        focusableElements[nextIndex].focus();
+      }
+    }
+  });
 });

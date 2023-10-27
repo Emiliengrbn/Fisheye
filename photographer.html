@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 
 <head>
   <link href="css/style.css" rel="stylesheet" type="text/css" />
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Réseaux de partage de photos entre différents photographe" />
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <script src="https://kit.fontawesome.com/b29950c9e9.js" crossorigin="anonymous"></script>
   <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
@@ -12,34 +14,37 @@
 
 <body>
   <header>
-    <img src="assets/images/logo.png" class="logo" />
+    <a href="/">
+      <img src="assets/images/logo.png" class="logo" alt="fisheye logo" />
+    </a>
   </header>
   <main id="main">
     <div id="photograph-header"></div>
     <div id="sort_picture"></div>
     <div id="picture_section"></div>
+    <div id="container_counter_likes"></div>
   </main>
   <div id="contact_modal">
     <div class="modal">
       <header>
         <h2 id="header_title">Contactez-moi</h2>
-        <img src="assets/icons/close.svg" onclick="closeModal()" />
+        <img src="assets/icons/close.svg" onclick="closeModal()" alt="close modal" />
       </header>
       <form id="form" novalidate>
         <div>
           <div>
-            <label for="first">Prénom</label>
-            <input class="text-control form_data" type="text" id="firstName" name="first" minlength="2" required /><br>
+            <label for="firstName">Prénom</label>
+            <input class="text-control form_data" type="text" id="firstName" name="first" minlength="2" required />
             <p id="firstNameErrorMsg" class="errorMsg"></p>
           </div>
           <div>
-            <label for="last">Nom</label>
-            <input class="text-control form_data" type="text" id="lastName" name="last" /><br>
+            <label for="lastName">Nom</label>
+            <input class="text-control form_data" type="text" id="lastName" name="last" />
             <p id="lastNameErrorMsg" class="errorMsg"></p>
           </div>
           <div>
             <label for="email">E-mail</label>
-            <input class="text-control form_data" type="email" id="email" name="email" /><br>
+            <input class="text-control form_data" type="email" id="email" name="email" />
             <p id="emailErrorMsg" class="errorMsg"></p>
           </div>
           <div>
@@ -48,30 +53,17 @@
             <p id="textareaErrorMsg" class="errorMsg"></p>
           </div>
         </div>
-        <button class="contact_button" type="submit">Envoyer</button>
+        <button class="contact_button" type="submit" aria-label="Submit">Envoyer</button>
       </form>
       <div class="confirmation_content ">
         <p class="text_confirmation_content">Merci pour votre message</p>
-        <button class="btn-close close" class="button" onclick="closeModal()">Fermer</button>
+        <button class="btn-close close button" aria-label="Close" onclick="closeModal()">Fermer</button>
       </div>
-    </div>
-  </div>
-
-  <div class="lightbox">
-    <button class="lightbox_close" onclick="closeLightbox()">
-      <i class="fa-solid fa-xmark" style="color: #901c1c;"></i>
-    </button>
-    <button class="lightbox_preview"></button>
-    <button class="lightbox_next"></button>
-    <div class="lightbox_container">
-      <img src="https://picsum.photos/900/1800" alt="">
-      <p class="lightbox_container_description">Azertyuiop</p>
     </div>
   </div>
 
   <script src="/scripts/pages/photographer.js" type="module"></script>
   <script src="/scripts/utils/contactForm.js"></script>
-  <script src="/scripts/utils/lightbox.js"></script>
 </body>
 
 </html>

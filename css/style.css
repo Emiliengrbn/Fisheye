@@ -28,8 +28,13 @@ a {
     text-decoration: none;
 }
 
+header a {
+    width: 100%;
+}
+
 .logo {
     height: 50px;
+    width: 200px;
     margin-left: 100px;
 }
 

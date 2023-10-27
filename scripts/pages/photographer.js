@@ -1,11 +1,5 @@
-import {
-  displayPicturesSortDropdown,
-  generateMediasGrid,
-  getPhotographerInfo,
-  getPhotographerMedia,
-  updateTotalLikes,
-  // headerPhotographerTemplate,
-} from "../templates/headerPhotographerPage.js";
+import { PhotographerManager } from "../templates/headerPhotographerPage.js";
+import { Lightbox } from "../utils/lightbox.js";
 
 async function getPhotographersMedia() {
   const fetchResult = await fetch("../data/photographers.json");
@@ -18,28 +12,48 @@ async function displayData(photographers, media) {
   const urlSearchParams = new URLSearchParams(queryStringUrlId);
   const photographerId = urlSearchParams.get("id");
   const photographer = photographers.find((p) => p.id == photographerId);
-
-  const main = document.getElementById("main");
-  // const aze = headerPhotographerTemplate(photographers, media);
-
-  const photographerBanner = getPhotographerInfo(photographer);
   const banner = document.getElementById("photograph-header");
-  banner.innerHTML += photographerBanner;
-
-  const sort = displayPicturesSortDropdown();
+  const gridContainer = document.getElementById("picture_section");
   const sortSection = document.getElementById("sort_picture");
-  sortSection.innerHTML += sort;
+  const containerTotalLikes = document.getElementById(
+    "container_counter_likes"
+  );
 
-  const mediaData = getPhotographerMedia(photographerId, media);
-  const dom = generateMediasGrid(mediaData, photographerId);
-  const grid_container = document.getElementById("picture_section");
-  grid_container.innerHTML += dom;
+  //  IMPORT WITH CLASS
 
-  const totalLikes = updateTotalLikes(mediaData, photographer);
-  main.innerHTML += totalLikes;
+  const photographerManager = new PhotographerManager(photographer);
+  const bannerFromClass = photographerManager.displayInfo();
+  banner.innerHTML += bannerFromClass;
 
-  // const likesPrice = aze.updateTotalLikes();
-  // main.innerHTML += likesPrice;
+  photographerManager.getMediasList(media);
+  const sortDropdown = photographerManager.displaySortElement();
+  sortSection.innerHTML = sortDropdown;
+
+  const mediasGrid = photographerManager.sortByLikes();
+  gridContainer.innerHTML = mediasGrid;
+
+  document.addEventListener("sortMedia", (e) => {
+    if (e.detail) {
+      gridContainer.innerHTML = e.detail;
+      photographerManager.addCounterLikes();
+      Lightbox.init(photographer, photographerManager.mediasList);
+    }
+  });
+
+  const totalLikes = photographerManager.updateTotalLikes();
+  containerTotalLikes.innerHTML = totalLikes;
+
+  document.addEventListener("likeMedia", (e) => {
+    if (e.detail) {
+      containerTotalLikes.innerHTML = e.detail;
+    }
+  });
+
+  photographerManager.sortMedia();
+  photographerManager.addCounterLikes();
+  photographerManager.deleteLink();
+
+  Lightbox.init(photographer, photographerManager.mediasList);
 }
 
 async function init() {

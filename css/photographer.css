@@ -22,6 +22,10 @@ main {
     margin-right: 0;
 }
 
+.location {
+    font-size: 20px;
+}
+
 .contact_button {
     font-size: 20px;
     font-weight: bold;
@@ -45,29 +49,31 @@ main {
 .modal {
     border-radius: 5px;
     background-color: #DB8876;
-    width: 40%;
+    width: 25%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
     padding: 30px;
     margin: auto;
     position: absolute;
     top: 10px;
+    height: 90%;
 }
 
 .modal header {
     justify-content: space-between;
     width: 100%;
+    margin-bottom: 50px;
 }
 
 .modal header img {
     cursor: pointer;
+    width: 30px;
 }
 
 .modal header h2 {
-    font-size: 50px;
-    font-weight: normal;
+    font-size: 30px;
+    /* font-weight: normal; */
     text-align: center;
 }
 
@@ -80,7 +86,8 @@ form {
 
 form label {
     color: #312E2E;
-    font-size: 30px;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 form div {
@@ -88,20 +95,20 @@ form div {
     flex-direction: column;
     width: 100%;
     align-items: self-start;
-    margin-bottom: 26px;
 }
 
 form input,
 textarea {
     width: 100%;
-    height: 50px;
+    height: 40px;
     border: none;
     border-radius: 5px;
-    font-size: 23px;
+    font-size: 20px;
 }
 
 form textarea {
     height: 100px;
+    padding: 5px;
 }
 
 
@@ -114,7 +121,8 @@ form textarea {
 }
 
 .text_confirmation_content {
-    color: #000;
+    color: #901C1C;
+    font-weight: bold;
     font-size: 40px;
     text-align: center;
 }
@@ -124,7 +132,7 @@ form textarea {
     display: block;
     margin: 0 auto;
     border-radius: 7px;
-    font-size: 2rem;
+    font-size: 1.5rem;
     padding: 12px 82px;
     color: #fff;
     cursor: pointer;
@@ -143,6 +151,13 @@ form textarea {
     display: none;
 }
 
+.errorMsg {
+    margin-top: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #901C1C;
+}
+
 /* ---------- PICTURE SECTION ----------*/
 
 #picture_section {
@@ -157,11 +172,13 @@ form textarea {
     margin: 20px 0;
 }
 
-.picture_container_img {
+.picture_container img,
+.picture_container video {
     width: 100%;
     height: 90%;
     object-fit: cover;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .picture_container_description {
@@ -193,19 +210,45 @@ form textarea {
     cursor: pointer;
 }
 
-.picture_container_description_like div {
+.picture_container_description_like button {
+    background: none;
+    border: none;
     display: flex;
 }
 
 /*------------ SORT PHOTOS ------------*/
 
+#values_select {
+    border-radius: 5px;
+}
+
 #sort_picture {
     display: flex;
+    align-items: center;
+    margin-top: 20px;
 }
+
+#sort_picture label {
+    color: #000000;
+    font-weight: bold;
+    font-size: 20px;
+    margin-right: 20px;
+}
+
+#sort_picture select {
+    background: #901C1C;
+    border: 1px solid #ccc;
+    padding: 5px;
+    color: white;
+    width: 120px;
+    height: 50px;
+    font-size: 17px;
+}
+
 
 /*------------ COUNTER LIKES ------------*/
 
-.container_counter_likes {
+#container_counter_likes {
     position: fixed;
     bottom: 0px;
     right: 100px;
@@ -224,20 +267,24 @@ form textarea {
 /*------------- LIGHTBOX MODAL -------------*/
 
 .lightbox {
-    display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(219, 219, 219, 0.7);
+    background-color: rgba(255, 255, 255, 0.9);
     z-index: 10;
     overflow: auto;
     animation: lightboxIn .5s;
+    transition: opacity .3s;
+}
+
+.lightbox.fadeOut {
+    opacity: 0;
 }
 
 .lightbox_next,
-.lightbox_preview {
+.lightbox_previous {
     border: none;
     /* background: url(../assets/icons/arrow.svg) center center / 100% 100%;
     height: 16px;
@@ -253,9 +300,10 @@ form textarea {
     z-index: 11;
     /* margin-right: 50px;
     margin-left: 50px; */
+    text-indent: -3000px;
 }
 
-.lightbox_preview {
+.lightbox_previous {
     right: auto;
     left: 0;
     transform: rotate(180deg);
@@ -284,10 +332,26 @@ form textarea {
     opacity: 1;
 }
 
+.lightbox_container video {
+    max-height: 90%;
+}
+
 .lightbox_container img {
-    max-width: 100%;
-    height: auto;
+    height: 90%;
+}
+
+.lightbox_container img,
+.lightbox_container video {
+    max-width: 90%;
     animation: lightboxIn .5s;
+    transition: opacity .3s;
+    z-index: 100;
+}
+
+.lightbox_container p {
+    font-size: 22px;
+    font-weight: bold;
+    color: #901C1C;
 }
 
 .lightbox_container {
@@ -295,10 +359,18 @@ form textarea {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    flex-direction: column;
+    height: 98vh;
 }
 
-@keyframes lighboxIn {
+.lightbox_loader {
+    height: 38px;
+    width: 38px;
+    opacity: .5;
+    background: url(../assets/icons/loader.svg) center center no-repeat;
+}
+
+@keyframes lightboxIn {
     form {
         opacity: 0;
     }
