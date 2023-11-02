@@ -7,7 +7,7 @@ import { MediaFactory } from "../factories/MediasFactory.js";
  */
 export class Lightbox {
   static init(photographer, photographerMedias) {
-    const links = Array.from(document.querySelectorAll(`.lightbox_link`));
+    const links = Array.from(document.querySelectorAll(".lightbox_link"));
     links.forEach((link) =>
       link.addEventListener("click", (e) => {
         e.preventDefault();
@@ -23,6 +23,7 @@ export class Lightbox {
             (m) => m.id === Number(mediaId)
           );
 
+          // eslint-disable-next-line no-new
           new Lightbox(photographer, photographerMedias, media);
         });
       })
@@ -37,7 +38,9 @@ export class Lightbox {
     this.photographer = photographer;
     this.photographerMedias = photographerMedias;
     this.media = media;
-    let i = this.photographerMedias.findIndex((image) => image === this.media);
+    const i = this.photographerMedias.findIndex(
+      (image) => image === this.media
+    );
     this.element = this.buildDom(this.photographerMedias[i]);
     this.onKeyUp = this.onKeyUp.bind(this);
     document.body.appendChild(this.element);

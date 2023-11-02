@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 function displayModal() {
   const modal = document.getElementById("contact_modal");
   const formulaire = document.getElementById("form");
@@ -7,6 +8,7 @@ function displayModal() {
     champs[0].focus();
   }
 }
+// eslint-disable-next-line no-unused-vars
 function closeModal() {
   const modal = document.getElementById("contact_modal");
   modal.style.display = "none";
@@ -16,24 +18,14 @@ const regexOnlyLetter =
   /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u;
 const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
 
-const modal = document.getElementsByClassName("modal");
 const form = document.getElementById("form");
 const headerTitle = document.getElementById("header_title");
-const formData = document.getElementsByClassName("form_data");
 const confirmation = document.getElementsByClassName("confirmation_content");
 
 const firstName = document.getElementById("firstName");
-const firstNameError = document.getElementById("firstNameErrorMsg");
-let firstNameCheck = false;
 const lastName = document.getElementById("lastName");
-const lastNameError = document.getElementById("lastNameErrorMsg");
-let lastNameCheck = false;
 const email = document.getElementById("email");
-const emailError = document.getElementById("emailErrorMsg");
-let emailCheck = false;
 const message = document.getElementById("message");
-const messageError = document.getElementById("textareaErrorMsg");
-let messageCheck = false;
 
 const fieldsValidation = {
   firstName: false,

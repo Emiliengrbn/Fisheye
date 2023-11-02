@@ -7,10 +7,11 @@ async function getPhotographersMedia() {
 }
 
 async function displayData(photographers, media) {
-  //Récupération du paramètre id dans l'URL
+  // Récupération du paramètre id dans l'URL
   const queryStringUrlId = window.location.search;
   const urlSearchParams = new URLSearchParams(queryStringUrlId);
   const photographerId = urlSearchParams.get("id");
+  // eslint-disable-next-line eqeqeq
   const photographer = photographers.find((p) => p.id == photographerId);
   const banner = document.getElementById("photograph-header");
   const gridContainer = document.getElementById("picture_section");
@@ -18,8 +19,6 @@ async function displayData(photographers, media) {
   const containerTotalLikes = document.getElementById(
     "container_counter_likes"
   );
-
-  //  IMPORT WITH CLASS
 
   const photographerManager = new PhotographerManager(photographer);
   const bannerFromClass = photographerManager.displayInfo();

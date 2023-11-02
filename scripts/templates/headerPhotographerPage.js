@@ -26,7 +26,7 @@ export class PhotographerManager {
   /* Liste des medias du photographe */
   getMediasList(mediasList) {
     this.mediasList = mediasList.filter(
-      (m) => m.photographerId == this.photographer.id
+      (m) => m.photographerId === this.photographer.id
     );
     return this.mediasList;
   }
@@ -93,6 +93,7 @@ export class PhotographerManager {
     this.mediasList.sort((a, b) => new Date(b.date) - new Date(a.date));
     return this.displayMediasGrid(this.mediasList);
   }
+
   /* Tri par tire */
   sortByTitle() {
     this.mediasList.sort((a, b) => (a.title > b.title ? 1 : -1));
